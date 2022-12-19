@@ -92,11 +92,20 @@ function problemB() {
 
   // promise version
   // ???
-  const myPromises = filenames.map((file) => promisifiedReadFile(file));
-  Promise.all(myPromises).then((stanzas) => {
-    stanzas.forEach((stanza) => blue(stanza));
-    console.log('done');
-  });
+  for (
+    let i = 1, promesa = promisifiedReadFile(filenames[0]);
+    i <= filenames.length;
+    i++
+  ) {
+    promesa = promesa.then((stanza) => {
+      blue(stanza);
+      if (i === filenames.length) {
+        console.log('done');
+      } else {
+        return promisifiedReadFile(filenames[i]);
+      }
+    });
+  }
 }
 
 function problemC() {
