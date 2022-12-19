@@ -76,22 +76,27 @@ function problemB() {
   });
 
   // callback version
-  async.each(
-    filenames,
-    function (filename, eachDone) {
-      readFile(filename, function (err, stanza) {
-        console.log('-- B. callback version --');
-        blue(stanza);
-        eachDone();
-      });
-    },
-    function (err) {
-      console.log('-- B. callback version done --');
-    }
-  );
+  // async.each(
+  //   filenames,
+  //   function (filename, eachDone) {
+  //     readFile(filename, function (err, stanza) {
+  //       console.log('-- B. callback version --');
+  //       blue(stanza);
+  //       eachDone();
+  //     });
+  //   },
+  //   function (err) {
+  //     console.log('-- B. callback version done --');
+  //   }
+  // );
 
   // promise version
   // ???
+  const myPromises = filenames.map((file) => promisifiedReadFile(file));
+  Promise.all(myPromises).then((stanzas) => {
+    stanzas.forEach((stanza) => blue(stanza));
+    console.log('done');
+  });
 }
 
 function problemC() {
