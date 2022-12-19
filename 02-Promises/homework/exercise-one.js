@@ -195,5 +195,5 @@ function problemF() {
     .catch((error) => {
       magenta(new Error(error));
     })
-    .finally(console.log('done'));
+    .finally(() => console.log('done'));
 }
