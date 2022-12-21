@@ -197,6 +197,12 @@ function problemD() {
         return promisifiedReadFile(filenames[i]);
       }
     });
+    if (i === filenames.length) {
+      promesa.catch((error) => {
+        magenta(new Error(error));
+        console.log('done');
+      });
+    }
   }
 }
 
