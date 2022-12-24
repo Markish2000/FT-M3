@@ -215,6 +215,6 @@ function problemE() {
 
   var fs = require('fs');
   function promisifiedWriteFile(filename, str) {
-    // tu código aquí6
+    // tu código aquí7
   }
 }
