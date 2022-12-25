@@ -1,7 +1,7 @@
 {
   "name": "01-node",
   "version": "1.0.0",
-  "description": "La 'filosofía Unix' fue originada con las reflexiones de Ken Thompson sobre cómo diseñar un sistema operativo pequeño, capaz y con una interfaz de servicio limpia.",
+  "description": "",
   "scripts": {
     "start": "nodemon bash.js"
   },
@@ -10,6 +10,5 @@
   "dependencies": {
     "nodemon": "^2.0.20",
     "request": "^2.88.2"
-  },
-  "main": "bash.js"
+  }
 }

@@ -1,43 +1,56 @@
-const fs = require('fs');
-const { request } = require('http');
+const fs = require("fs");
+const request = require("request");
 
 const write = (value) => {
-  process.stdout.write('prompt > ');
-  process.stdout.write(value + '\n');
-  process.stdout.write('prompt > ');
+  process.stdout.write(value + "\n");
+  process.stdout.write("prompt > ");
 };
 
-const pwd = () => write(process.cwd().split('\\').at(-1));
-
-const date = () => write(Date());
-
-const ls = () => fs.readdir('.', (err, files) => write(files.join(' - ')));
-
-const echo = (text) => write(text);
-
-const cat = (fileName) =>
-  fs.readFile('./' + fileName, 'utf-8', (err, file) => write(file));
-
-const head = (fileName) =>
-  fs.readFile('./' + fileName, 'utf-8', (err, file) =>
-    write(file.split('\n').slice(0, 5).join('\n'))
-  );
-
-const tail = (fileName) => {
-  fs.readFile('./' + fileName, 'utf-8', (err, file) =>
-    write(file.split('\n').slice(-5).join('\n'))
-  );
+const readPartFile = (filename, part) => {
+  // hago una sola lectura del archivio
+  // retorno la porcipn que necesito
 };
-
-const curl = (url) => request(url, (error, response, body) => write(body));
 
 module.exports = {
-  pwd,
-  date,
-  ls,
-  echo,
-  cat,
-  head,
-  tail,
-  curl,
+  pwd: () => {
+    write(process.cwd().split("\\").at(-1));
+  },
+
+  date: () => {
+    write(Date());
+  },
+
+  ls: () => {
+    fs.readdir(".", (err, files) => {
+      const text = files.join("\n");
+      write(text);
+    });
+  },
+  echo: (text) => {
+    write(text);
+  },
+
+  cat: (filename) => {
+    fs.readFile("./" + filename, "utf8", (err, file) => {
+      write(file);
+    });
+  },
+
+  head: (filename) => {
+    fs.readFile("./" + filename, "utf8", (err, file) => {
+      write(file.split("\n").slice(0, 5).join("\n"));
+    });
+  },
+
+  tail: (filename) => {
+    fs.readFile("./" + filename, "utf8", (err, file) => {
+      write(file.split("\n").slice(-5).join("\n"));
+    });
+  },
+
+  curl: (url) => {
+    request(url, (error, response, body) => {
+      write(body);
+    });
+  },
 };
