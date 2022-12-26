@@ -157,7 +157,7 @@ Chapter 1: Estructura básica y Cambios de Estado
         expect(promise._value).toBe(myReason);
       });
 
-      xit('no afecta un promesa ya rechazada', function () {
+      it('no afecta un promesa ya rechazada', function () {
         var reason1 = { error: 'bad request' };
         var reason2 = { error: 'timed out' };
         promise._internalReject(reason1);

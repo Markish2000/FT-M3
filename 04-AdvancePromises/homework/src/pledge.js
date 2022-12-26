@@ -9,6 +9,8 @@ function $Promise(executor) {
     throw TypeError('executor must be a function');
 
   this._state = 'pending';
+  this._value = undefined;
+  executor(this._internalResolve.bind(this), this._internalReject.bind(this));
 }
 $Promise.prototype._internalResolve = function (data) {
   if (this._state === 'pending') {
