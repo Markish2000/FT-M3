@@ -1,10 +1,17 @@
 'use strict';
 /*----------------------------------------------------------------
-Promises Workshop: construye la libreria de ES6 promises, pledge.js
+Promises Workshop: construye la librería de ES6 promises, pledge.js
 ----------------------------------------------------------------*/
 // // TU CÓDIGO AQUÍ:
 
+function $Promise(executor) {
+  if (typeof executor !== 'function')
+    throw TypeError('executor must be a function');
 
+  this._state = 'pending';
+  $Promise.prototype._internalResolve = () => {};
+  $Promise.prototype._internalReject = () => {};
+}
 
 module.exports = $Promise;
 /*-------------------------------------------------------
@@ -13,7 +20,7 @@ realmente usar module.exports. Pero aquí está para referencia:
 
 module.exports = $Promise;
 
-Entonces en proyectos Node podemos esribir cosas como estas:
+Entonces en proyectos Node podemos escribir cosas como estas:
 
 var Promise = require('pledge');
 …
