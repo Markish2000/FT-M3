@@ -29,8 +29,6 @@ $Promise.prototype._internalReject = function (reason) {
   }
 };
 
-const handlers = [{}];
-
 $Promise.prototype.then = function (successCb, errorCb) {
   this._handlerGroups.push({
     successCb: typeof successCb === 'function' ? successCb : false,
