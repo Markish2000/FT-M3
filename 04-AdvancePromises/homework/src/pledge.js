@@ -42,13 +42,18 @@ $Promise.prototype._internalReject = function (reason) {
 };
 
 $Promise.prototype.then = function (successCb, errorCb) {
+  const downstreamPromise = new $Promise(() => {});
+
   this._handlerGroups.push({
     successCb: typeof successCb === 'function' ? successCb : false,
     errorCb: typeof errorCb === 'function' ? errorCb : false,
+    downstreamPromise,
   });
   if (this._state !== 'pending') {
     this._callHandlers(this._value);
   }
+
+  return downstreamPromise;
 };
 
 $Promise.prototype.catch = function (errorCb) {
