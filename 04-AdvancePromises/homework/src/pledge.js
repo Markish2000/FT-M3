@@ -10,19 +10,30 @@ function $Promise(executor) {
 
   this._state = 'pending';
   this._value = undefined;
+  this._handlerGroups = [];
+
   executor(this._internalResolve.bind(this), this._internalReject.bind(this));
 }
+
 $Promise.prototype._internalResolve = function (data) {
   if (this._state === 'pending') {
     this._state = 'fulfilled';
     this._value = data;
   }
 };
+
 $Promise.prototype._internalReject = function (reason) {
   if (this._state === 'pending') {
     this._state = 'rejected';
     this._value = reason;
   }
+};
+
+$Promise.prototype.then = function (successHb, errorHb) {
+  this._handlerGroups.push({
+    successHb: typeof successHb === 'function' ? successHb : false,
+    errorHb,
+  });
 };
 
 module.exports = $Promise;
