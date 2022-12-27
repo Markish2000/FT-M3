@@ -33,7 +33,7 @@ $Promise.prototype._internalResolve = function (data) {
   }
 };
 
-$Promise.prototype._internalReject = function () {
+$Promise.prototype._internalReject = function (reason) {
   if (this._state === 'pending') {
     this._state = 'rejected';
     this._value = reason;
@@ -41,7 +41,7 @@ $Promise.prototype._internalReject = function () {
   }
 };
 
-$Promise.prototype.then = function (successCb, errorCb) {
+$Promise.prototype.then = function (successCb) {
   this._handlerGroups.push({
     successCb: typeof successCb === 'function' ? successCb : false,
     errorCb: typeof errorCb === 'function' ? errorCb : false,
