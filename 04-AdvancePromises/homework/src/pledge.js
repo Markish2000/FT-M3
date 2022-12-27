@@ -51,7 +51,7 @@ $Promise.prototype.then = function (successCb, errorCb) {
   }
 };
 
-$Promise.prototype.catch = function () {
+$Promise.prototype.catch = function (errorCb) {
   return this.then(null, errorCb);
 };
 
