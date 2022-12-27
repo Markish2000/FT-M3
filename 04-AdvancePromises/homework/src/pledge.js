@@ -41,7 +41,7 @@ $Promise.prototype._internalReject = function (reason) {
   }
 };
 
-$Promise.prototype.then = function (successCb) {
+$Promise.prototype.then = function (successCb, errorCb) {
   this._handlerGroups.push({
     successCb: typeof successCb === 'function' ? successCb : false,
     errorCb: typeof errorCb === 'function' ? errorCb : false,
@@ -51,7 +51,7 @@ $Promise.prototype.then = function (successCb) {
   }
 };
 
-$Promise.prototype.catch = function (errorCb) {
+$Promise.prototype.catch = function () {
   return this.then(null, errorCb);
 };
 
