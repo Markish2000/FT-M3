@@ -12,7 +12,7 @@ function $Promise(executor) {
   this._value = undefined;
   this._handlerGroups = [];
 
-  executor(this._internalResolve.bind(this), this._internalReject.bind());
+  executor(this._internalResolve.bind(), this._internalReject.bind(this));
 }
 
 $Promise.prototype._callHandlers = function () {
