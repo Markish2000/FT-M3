@@ -21,7 +21,7 @@ $Promise.prototype._callHandlers = function () {
 
     if (this._state === 'fulfilled' && group.successCb)
       group.successCb(this._value);
-    if (this._state === 'rejected' && group.errorCb) group.errorCb(this._value);
+    if (this._state === 'rejected' && group.errorCb) group.errorCb(value);
   }
 };
 
