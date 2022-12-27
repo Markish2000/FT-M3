@@ -34,6 +34,9 @@ $Promise.prototype.then = function (successCb, errorCb) {
     successCb: typeof successCb === 'function' ? successCb : false,
     errorCb: typeof errorCb === 'function' ? errorCb : false,
   });
+
+  if (this._state !== 'pending') {
+  }
 };
 
 module.exports = $Promise;
