@@ -12,7 +12,7 @@ function $Promise(executor) {
   this._value = undefined;
   this._handlerGroups = [];
 
-  executor(this._internalResolve.bind(this), this._internalReject.bind(this));
+  executor(this._internalResolve.bind(this), this._internalReject.bind());
 }
 
 $Promise.prototype._callHandlers = function () {
@@ -21,7 +21,7 @@ $Promise.prototype._callHandlers = function () {
 
     if (this._state === 'fulfilled' && group.successCb)
       group.successCb(this._value);
-    if (this._state === 'rejected' && group.errorCb) group.errorCb(value);
+    if (this._state === 'rejected' && group.errorCb) group.errorCb(this._value);
   }
 };
 
