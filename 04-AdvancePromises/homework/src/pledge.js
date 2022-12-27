@@ -29,10 +29,10 @@ $Promise.prototype._internalReject = function (reason) {
   }
 };
 
-$Promise.prototype.then = function (successHb, errorHb) {
+$Promise.prototype.then = function (successCb, errorCb) {
   this._handlerGroups.push({
-    successHb: typeof successHb === 'function' ? successHb : false,
-    errorHb,
+    successCb: typeof successCb === 'function' ? successCb : false,
+    errorCb: typeof errorCb === 'function' ? errorCb : false,
   });
 };
 
