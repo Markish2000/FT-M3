@@ -25,7 +25,7 @@ $Promise.prototype._callHandlers = function () {
   }
 };
 
-$Promise.prototype._internalResolve = function () {
+$Promise.prototype._internalResolve = function (data) {
   if (this._state === 'pending') {
     this._state = 'fulfilled';
     this._value = data;
