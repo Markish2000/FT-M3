@@ -21,6 +21,7 @@ $Promise.prototype._callHandlers = function () {
 
     if (this._state === 'fulfilled') {
       if (group.successCb) {
+        const result = group.successCb();
       } else {
         group.downstreamPromise._internalResolve(this._value);
       }
