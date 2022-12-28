@@ -28,6 +28,7 @@ $Promise.prototype._callHandlers = function () {
             (error) => group.downstreamPromise._internalReject(error)
           );
         } else {
+          group.downstreamPromise._internalResolve(result);
         }
       } else {
         group.downstreamPromise._internalResolve(this._value);
