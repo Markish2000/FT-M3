@@ -22,7 +22,7 @@ $Promise.prototype._callHandlers = function () {
     if (this._state === 'fulfilled') {
       if (group.successCb) {
         try {
-          const result = group.successCb();
+          const result = group.successCb(this._value);
           if (result instanceof $Promise) {
             return result.then(
               (value) => group.downstreamPromise._internalResolve(value),
@@ -37,8 +37,25 @@ $Promise.prototype._callHandlers = function () {
       } else {
         group.downstreamPromise._internalResolve(this._value);
       }
+    } else if (this._state === 'rejected') {
+      if (group.errorCb) {
+        try {
+          const result = group.errorCb(this._value);
+          if (result instanceof $Promise) {
+            return result.then(
+              (value) => group.downstreamPromise._internalResolve(value),
+              (error) => group.downstreamPromise._internalReject(error)
+            );
+          } else {
+            group.downstreamPromise._internalResolve(result);
+          }
+        } catch (error) {
+          group.downstreamPromise._internalReject(error);
+        }
+      } else {
+        group.downstreamPromise._internalReject(this._value);
+      }
     }
-    if (this._state === 'rejected' && group.errorCb) group.errorCb(this._value);
   }
 };
 
