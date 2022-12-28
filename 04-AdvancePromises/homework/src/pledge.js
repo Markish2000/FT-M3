@@ -64,6 +64,7 @@ $Promise.prototype._internalResolve = function (data) {
     this._state = 'fulfilled';
     this._value = data;
     this._callHandlers();
+  } else {
   }
 };
 
