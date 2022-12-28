@@ -22,6 +22,7 @@ $Promise.prototype._callHandlers = function () {
     if (this._state === 'fulfilled') {
       if (group.successCb) {
       } else {
+        group.downstreamPromise._internalResolve(this._value);
       }
     }
     if (this._state === 'rejected' && group.errorCb) group.errorCb(this._value);
