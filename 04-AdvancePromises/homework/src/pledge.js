@@ -23,6 +23,10 @@ $Promise.prototype._callHandlers = function () {
       if (group.successCb) {
         const result = group.successCb();
         if (result instanceof $Promise) {
+          return result.then(
+            (value) => group.downstreamPromise._internalResolve(value),
+            (error) => group.downstreamPromise._internalReject(error)
+          );
         } else {
         }
       } else {
