@@ -21,14 +21,18 @@ $Promise.prototype._callHandlers = function () {
 
     if (this._state === 'fulfilled') {
       if (group.successCb) {
-        const result = group.successCb();
-        if (result instanceof $Promise) {
-          return result.then(
-            (value) => group.downstreamPromise._internalResolve(value),
-            (error) => group.downstreamPromise._internalReject(error)
-          );
-        } else {
-          group.downstreamPromise._internalResolve(result);
+        try {
+          const result = group.successCb();
+          if (result instanceof $Promise) {
+            return result.then(
+              (value) => group.downstreamPromise._internalResolve(value),
+              (error) => group.downstreamPromise._internalReject(error)
+            );
+          } else {
+            group.downstreamPromise._internalResolve(result);
+          }
+        } catch (error) {
+          group.downstreamPromise._internalReject(error);
         }
       } else {
         group.downstreamPromise._internalResolve(this._value);
