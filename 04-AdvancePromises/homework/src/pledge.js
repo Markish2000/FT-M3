@@ -19,8 +19,11 @@ $Promise.prototype._callHandlers = function () {
   while (this._handlerGroups.length) {
     const group = this._handlerGroups.shift();
 
-    if (this._state === 'fulfilled' && group.successCb)
-      group.successCb(this._value);
+    if (this._state === 'fulfilled') {
+      if (group.successCb) {
+      } else {
+      }
+    }
     if (this._state === 'rejected' && group.errorCb) group.errorCb(this._value);
   }
 };
