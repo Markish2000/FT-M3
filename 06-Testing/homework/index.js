@@ -8,7 +8,7 @@ app.get('/', (req, res) => {
     message: 'hola',
   });
 });
-//7
+//8
 app.post('/product', (req, res) => {
   res.send({
     result: req.body.a / req.body.b,
