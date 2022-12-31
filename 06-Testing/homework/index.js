@@ -15,4 +15,4 @@ app.post('/product', (req, res) => {
   });
 });
 
-module.exports = app; // Exportamos app para que supertest session la pueda ej
+module.exports = app; // Exportamos app para que supertest session la pueda e
