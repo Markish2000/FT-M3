@@ -93,6 +93,14 @@ server.put('/posts', (req, res) => {
   }
 });
 
-server.delete('/posts', (req, res) => {});
+server.delete('/posts', (req, res) => {
+  const { id } = req.body;
+  const post = posts.find((post) => post.id === parseInt(id));
+  if (!id || !post)
+    res.status(STATUS_USER_ERROR).json({ error: 'Mensaje de error' });
+
+  posts = posts.filter((post) => post.id !== id);
+  res.status(200).json({ success: true });
+});
 
 module.exports = { posts, server };
