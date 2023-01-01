@@ -103,4 +103,13 @@ server.delete('/posts', (req, res) => {
   res.status(200).json({ success: true });
 });
 
+server.delete('/author', (req, res) => {
+  const { author } = req.body;
+  const authorPosts = posts.filter((post) => post.author === author);
+  if (!author || !authorPosts.length)
+    res.status(STATUS_USER_ERROR).json({ error: 'Mensaje de error' });
+  posts = posts.filter((post) => post.author !== author);
+  res.status(200).json(authorPosts);
+});
+
 module.exports = { posts, server };
