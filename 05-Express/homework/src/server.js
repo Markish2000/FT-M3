@@ -107,7 +107,9 @@ server.delete('/author', (req, res) => {
   const { author } = req.body;
   const authorPosts = posts.filter((post) => post.author === author);
   if (!author || !authorPosts.length)
-    res.status(STATUS_USER_ERROR).json({ error: 'Mensaje de error' });
+    res
+      .status(STATUS_USER_ERROR)
+      .json({ error: 'No existe el autor indicado' });
   posts = posts.filter((post) => post.author !== author);
   res.status(200).json(authorPosts);
 });
