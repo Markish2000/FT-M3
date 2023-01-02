@@ -166,7 +166,7 @@ async function problemD() {
   //   }
   // );
 
-  // AsyncAwait version
+  // AsyncAwait version.
   try {
     for (const file of filenames) {
       const stanza = await promisifiedReadFile(file);
