@@ -58,7 +58,7 @@ async function problemA() {
   console.log('done');
 }
 
-function problemB() {
+async function problemB() {
   /* * * * * * * * * * * * * * * * * * * * * * * * * * * *
    *
    * B. loggea todas las stanzas en poema dos, en cualquier orden y loggea
@@ -73,21 +73,27 @@ function problemB() {
   });
 
   // callback version
-  async.each(
-    filenames,
-    function (filename, eachDone) {
-      readFile(filename, function (err, stanza) {
-        console.log('-- B. callback version --');
-        blue(stanza);
-        eachDone();
-      });
-    },
-    function (err) {
-      console.log('-- B. callback version done --');
-    }
-  );
+  // async.each(
+  //   filenames,
+  //   function (filename, eachDone) {
+  //     readFile(filename, function (err, stanza) {
+  //       console.log('-- B. callback version --');
+  //       blue(stanza);
+  //       eachDone();
+  //     });
+  //   },
+  //   function (err) {
+  //     console.log('-- B. callback version done --');
+  //   }
+  // );
 
   // AsyncAwait version
+  const promises = filenames.map((file) => promisifiedReadFile(file));
+
+  const stanzas = await Promise.all(promises);
+
+  for (const stanza of stanzas) blue(stanza);
+  console.log('done');
 }
 
 function problemC() {
