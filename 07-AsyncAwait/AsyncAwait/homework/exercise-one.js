@@ -3,7 +3,7 @@
  * excersiceUtils es una variable que viene de un archivo en este repo
  * El archivo `./utils` esta en este nivel y se llama `utils.js`
  *
- * Este archivo crea un `promisifiedReadFile` - FIJATE EN ÉL!!!
+ * Este archivo crea un `promisifiedReadFile` - FÍJATE EN ÉL!!!
  *
  * Las funciones `blue` y `magenta` para mantener tu código DRY
  *
@@ -41,7 +41,7 @@ args.forEach(function (arg) {
 async function problemA() {
   /* * * * * * * * * * * * * * * * * * * * * * * * * * * *
    *
-   * A. loguea el poema uno stanza uno (ignorá errores)
+   * A. loguea el poema uno stanza uno (ignora errores)
    *
    */
   // callback version
@@ -80,9 +80,9 @@ async function problemB() {
 async function problemC() {
   /* * * * * * * * * * * * * * * * * * * * * * * * * * * *
    *
-   * C. lee & loggea el poema uno stanza dos y *DESPUES* lee & loggea
-   *    stanza tres. Loggea 'done' cuando ambas hayan terminado. Fijate
-   *    que los specs estan opinionados y espara la palabra exacata
+   * C. lee & loggea el poema uno stanza dos y *DESPUÉS* lee & loggea
+   *    stanza tres. Loggea 'done' cuando ambas hayan terminado. Fíjate
+   *    que los specs están opinados y esperará la palabra exacta
    *    'done' (case sensitive) para ser loggeada para poder pasar
    *    (ignora errores)
    *
@@ -129,9 +129,9 @@ async function problemD() {
 async function problemE() {
   /* * * * * * * * * * * * * * * * * * * * * * * * * * * *
    *
-   * E. Lee y loggea el poema uno stanza tres y *DESPUES* lee y loggea la
+   * E. Lee y loggea el poema uno stanza tres y *DESPUÉS* lee y loggea la
    *    stanza cuatro o loggea un error si llegase a ocurrir para
-   *    cuaquiera de las lecturas
+   *    cualquiera de las lecturas
    *
    */
   // callback version
