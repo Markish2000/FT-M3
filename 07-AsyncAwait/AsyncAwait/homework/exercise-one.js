@@ -54,25 +54,27 @@ async function problemA() {
   blue(stanza);
 }
 
-function problemB() {
+async function problemB() {
   /* * * * * * * * * * * * * * * * * * * * * * * * * * * *
    *
    * B. loggea el poema uno stanza dos y tres, en cualquier orden
    *    (ignora errores)
    *
    */
-
   // callback version
-  readFile('poem-one/stanza-02.txt', function (err, stanza2) {
-    console.log('-- B. callback version (stanza two) --');
-    blue(stanza2);
-  });
-  readFile('poem-one/stanza-03.txt', function (err, stanza3) {
-    console.log('-- B. callback version (stanza three) --');
-    blue(stanza3);
-  });
-
+  // readFile('poem-one/stanza-02.txt', function (err, stanza2) {
+  //   console.log('-- B. callback version (stanza two) --');
+  //   blue(stanza2);
+  // });
+  // readFile('poem-one/stanza-03.txt', function (err, stanza3) {
+  //   console.log('-- B. callback version (stanza three) --');
+  //   blue(stanza3);
+  // });
   // AsyncAwait version
+  const stanza2 = await promisifiedReadFile('poem-one/stanza-02.txt');
+  blue(stanza2);
+  const stanza3 = await promisifiedReadFile('poem-one/stanza-03.txt');
+  blue(stanza3);
 }
 
 function problemC() {
