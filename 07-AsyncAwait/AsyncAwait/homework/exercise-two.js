@@ -89,14 +89,12 @@ async function problemB() {
 
   // AsyncAwait version
   const promises = filenames.map((file) => promisifiedReadFile(file));
-
   const stanzas = await Promise.all(promises);
-
-  for (const stanza of stanzas) blue(stanza);
+  stanzas.forEach((stanza) => blue(stanza));
   console.log('done');
 }
 
-function problemC() {
+async function problemC() {
   /* * * * * * * * * * * * * * * * * * * * * * * * * * * *
    *
    * C. Lee y loggea todas las stanzas en el poema dos, *en orden* y
@@ -112,21 +110,26 @@ function problemC() {
   });
 
   // callback version
-  async.eachSeries(
-    filenames,
-    function (filename, eachDone) {
-      readFile(filename, function (err, stanza) {
-        console.log('-- C. callback version --');
-        blue(stanza);
-        eachDone();
-      });
-    },
-    function (err) {
-      console.log('-- C. callback version done --');
-    }
-  );
+  // async.eachSeries(
+  //   filenames,
+  //   function (filename, eachDone) {
+  //     readFile(filename, function (err, stanza) {
+  //       console.log('-- C. callback version --');
+  //       blue(stanza);
+  //       eachDone();
+  //     });
+  //   },
+  //   function (err) {
+  //     console.log('-- C. callback version done --');
+  //   }
+  // );
 
   // AsyncAwait version
+  for (const file of filenames) {
+    const stanza = await promisifiedReadFile(file);
+    blue(stanza);
+  }
+  console.log('done');
 }
 
 function problemD() {
