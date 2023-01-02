@@ -105,21 +105,25 @@ async function problemC() {
   console.log('done');
 }
 
-function problemD() {
+async function problemD() {
   /* * * * * * * * * * * * * * * * * * * * * * * * * * * *
    *
    * D. loggea el poema uno stanza cuatro o un error si llega a ocurrir
    *
    */
-
   // callback version
-  readFile('poem-one/wrong-file-name.txt', function (err, stanza4) {
-    console.log('-- D. callback version (stanza four) --');
-    if (err) magenta(err);
-    else blue(stanza4);
-  });
-
+  // readFile('poem-one/wrong-file-name.txt', function (err, stanza4) {
+  //   console.log('-- D. callback version (stanza four) --');
+  //   if (err) magenta(err);
+  //   else blue(stanza4);
+  // });
   // AsyncAwait version
+  try {
+    const stanza = await promisifiedReadFile('poem-one/wrong-file-name.txt');
+    blue(stanza);
+  } catch (error) {
+    magenta(error);
+  }
 }
 
 function problemE() {
